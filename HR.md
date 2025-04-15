@@ -31,20 +31,20 @@ I come from a family of four. My father is an engineer at Aditya Birla’s Hinda
 Right now, we’re living in Singrauli because of my father’s job, but our hometown is Lucknow. We’re a close family and they've always supported me in everything I do.
 
 ## Troubleshooting Approach
-Understand the Problem Clearly:
-First, I look at the exact symptoms — whether it's a pod crash, resource issue, API error, or an AWS service behaving unexpectedly. I check logs, events, metrics, and alerts using tools like kubectl, CloudWatch, Prometheus, or ELK depending on what’s available.
-Impact Analysis:
-I quickly check how critical the issue is — whether it's affecting users, production, or just a dev environment. This helps prioritize the fix.
-Reproduce and Isolate:
-I try to reproduce the issue in a test/staging environment if possible. This helps me narrow it down — for example, if it's related to pod limits, IAM permissions, or a config error.
-Root Cause Investigation:
-Once I have some logs or patterns, I dig deeper. For Kubernetes, I use kubectl describe, logs, and check resource limits, probes, and PVCs. For AWS, I use CloudTrail, CloudWatch, or the AWS CLI to track errors and permissions.
-Fix and Validate:
-After identifying the root cause, I apply the fix — whether it’s updating a manifest, adding IAM permission, modifying a load balancer config, or adjusting auto-scaling parameters. Then I validate if the issue is resolved completely.
-Document and Automate (if needed):
-I document the root cause and the fix for the team and, if it’s something recurring, I try to automate it — like adding alerts in Prometheus/Grafana or writing a script for validation checks.
-Postmortem or Review:
-If it was a critical issue, I do a short postmortem and suggest preventive measures so it doesn’t happen again.
+-Understand the Problem Clearly:
+ - First, I look at the exact symptoms — whether it's a pod crash, resource issue, API error, or an AWS service behaving unexpectedly. I check logs, events, metrics, and alerts using tools like kubectl, CloudWatch, Prometheus, or ELK depending on what’s available.
+- Impact Analysis:
+ - I quickly check how critical the issue is — whether it's affecting users, production, or just a dev environment. This helps prioritize the fix.
+- Reproduce and Isolate:
+ - I try to reproduce the issue in a test/staging environment if possible. This helps me narrow it down — for example, if it's related to pod limits, IAM permissions, or a config error.
+- Root Cause Investigation:
+ - Once I have some logs or patterns, I dig deeper. For Kubernetes, I use kubectl describe, logs, and check resource limits, probes, and PVCs. For AWS, I use CloudTrail, CloudWatch, or the AWS CLI to track errors and permissions.
+- Fix and Validate:
+ - After identifying the root cause, I apply the fix — whether it’s updating a manifest, adding IAM permission, modifying a load balancer config, or adjusting auto-scaling parameters. Then I validate if the issue is resolved completely.
+- Document and Automate (if needed):
+ - I document the root cause and the fix for the team and, if it’s something recurring, I try to automate it — like adding alerts in Prometheus/Grafana or writing a script for validation checks.
+- Postmortem or Review:
+ - If it was a critical issue, I do a short postmortem and suggest preventive measures so it doesn’t happen again.
 
 ## Why Looking for Change
 I’ve had a great experience in my current company, but over the past few months, the client has started redistributing key technologies and responsibilities to different vendors. As a result, my involvement in meaningful, hands-on work has reduced.
