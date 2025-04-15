@@ -18,6 +18,7 @@
 - [Questions for Alkira](#questions-for-alkira)
 
 ---
+I'm doing great, thank you! Excited to be here and looking forward to our conversation
 
 ## Introduction
 I’m Siddharth Singh, a DevOps and Cloud Engineer with 3 years of hands-on experience, currently working at Infosys.
