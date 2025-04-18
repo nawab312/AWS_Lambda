@@ -108,3 +108,29 @@ I also read that prominent companies like S&P Global and Warner Music Group have
 
 ## Questions for Alkira
 Yes, I’d love to know — what does the growth path look like for someone in this role at Alkira? are there any exciting projects or technology shifts coming up that I might get to work on?
+
+Sometimes, during peak traffic, our banking app (3-tier: Web → App → DB) slows down or returns HTTP 503 errors. I follow a structured approach to debug and resolve it
+- Check Load Balancer (ALB/NLB) Metrics. Check `HTTPCode_ELB_5XX`, `TargetResponseTime`, `HealthyHostCount`
+ - If I see 503 errors in ALB logs or high TargetResponseTime, it usually indicates backend unavailability.
+- Check EC2 Target Instances (App Layer)
+ - Instance health: Use DescribeTargetHealth
+ - Logs: Look at app logs (/var/log, custom log path) for: Unhandled exceptions, Connection pool exhaustion, Timeout errors (e.g., when talking to DB)
+   - A connection pool is a set of pre-created, reusable network connections (usually from App → DB or App → external services). All connections in the pool are currently in use, and new requests are waiting (or failing) to get a free connection.
+   - What causes Connection Pool Exhaustion?
+     - Long-running DB queries, Code doesn’t release connections, App threads stuck waiting, Too many concurrent users, Small connection pool config(	e.g., Max pool size = 10 under 1000 users)
+   - How to Fix It?
+     - Increase pool size, Always close connections, Optimize DB queries, Add caching(	Offload frequent reads to Redis), Scale app servers(	Add more EC2 instances or containers)
+ - System checks: top, htop, vmstat for CPU, memory, load avg
+ - Disk IO spikes (iostat, iotop)
+- Investigate Network Bottlenecks
+ - VPC Flow Logs: Look for dropped packets or throttled connections
+ - Route Tables & Security Groups: Misconfiguration can cause latency or blocked packets
+ - Peak hours = network congestion:
+   - Check bandwidth usage (CloudWatch, ifstat)
+   - Use enhanced networking (ENA) for better throughput on EC2
+   - Use Auto Scaling to handle peak loads
+ - *In one incident, we observed network throughput maxing out on EC2 which caused slow responses during salary processing hours*
+- Debug Database Layer
+
+![image](https://github.com/user-attachments/assets/e2246613-47e7-420a-a9f7-eec52d11f5a0)
+
