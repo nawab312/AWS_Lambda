@@ -26,6 +26,30 @@ In these 3 years, I’ve worked on two major projects. In my first project, I de
 In my second project, I led the cloud migration of core banking systems for Punjab National Bank and other regional banks. I used a wide range of AWS services like VPC, EC2, RDS, ALB, Auto Scaling, and S3. Again, I set up observability using Prometheus and Grafana.
 I’m also well-versed in Terraform for IaC, and I use Python and Bash regularly for scripting and automation. Right now, I’m looking for an opportunity where I can grow further
 
+I’m currently providing production support for Punjab National Bank (PNB) and several other Regional Rural Banks (RRBs). My day-to-day responsibilities include:
+- Monitoring application health and performance (via tools like CloudWatch, Prometheus, ELK).
+- Investigating and resolving issues such as slow response times, intermittent 503 errors, or connectivity failures.
+- Performing root cause analysis when services degrade, especially during peak banking hours.
+- Debugging issues like connection pool exhaustion, unhealthy target groups in ALB, DB query slowness, and network latency.
+- Coordinating with developers and infrastructure teams to push hotfixes or scaling solutions."
+
+In production support for banking apps like PNB and RRBs, we proactively monitor a combination of infrastructure, application, and network metrics. Some of the key metrics we track are:
+- Load Balancer (ALB) Metrics – AWS CloudWatch
+ - `HTTPCode_Target_5XX_Count`: Shows 503s, 504s — helps detect unhealthy backend services.
+ - `TargetResponseTime`: Measures how fast the backend responds.
+ - `RequestCount`: High spikes may indicate traffic surges or DDoS attacks.
+- EC2 / App Layer Metrics
+ - `CPUUtilization`, `MemoryUsage`, `Disk IO`: To detect resource bottlenecks.
+ - `Connection Coun`t: Helps identify connection pool exhaustion.
+ - `Thread Count`: If too many threads are waiting/blocked, performance degrades.
+ - `Error logs`, `GC logs` (Java): For JVM-based apps.
+- Application Metrics (via Prometheus/Grafana or ELK)
+ - `Latency (p95, p99)`: How fast the app responds to 95% or 99% of requests.
+ - `Error Rate`: % of failed API calls, HTTP 4xx/5xx.
+ - `Throughput (RPS)`: Requests per second — helps in scaling decisions.
+- Database Metrics (RDS / Aurora)
+- Network Metrics
+
 ## Family Background
 I come from a family of four. My father is an engineer at Aditya Birla’s Hindalco Industries, and my mother is a homemaker. I have a younger sister who recently completed her B.Tech from JSS Noida and is now working at InfoEdge in Noida.
 Right now, we’re living in Singrauli because of my father’s job, but our hometown is Lucknow. We’re a close family and they've always supported me in everything I do.
